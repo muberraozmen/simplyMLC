@@ -1,0 +1,34 @@
+{
+  "data": {
+    "dataset": "bibtex",
+    "source": "skmultilearn",
+    "processor": {
+      "batch_size": 32,
+      "shuffle": false,
+      "drop_last": true,
+      "padding_index": 0,
+      "device": "cuda"
+    }
+  },
+  "model": {
+    "network": "TransformerMLC",
+    "num_enc_layers": 2,
+    "num_dec_layers": 2,
+    "d_model": 512,
+    "dim_feedforward": 1024,
+    "nhead": 4,
+    "dropout": 0.1,
+    "loss_fn": "bce",
+    "lr": 1e-4,
+    "step_size": 10,
+    "gamma": 0.1,
+    "last_epoch": -1,
+    "device": "cuda"
+  },
+  "experiment": {
+    "name": "simplyMLC_bibtex",
+    "num_epochs": 50,
+    "test_step": 1,
+    "results_dir": "./results/bibtex/"
+  }
+}
