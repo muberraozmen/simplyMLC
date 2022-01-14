@@ -1,5 +1,5 @@
-torch~=1.10
-numpy~=1.19.1
-tqdm~=4.62.3
-scikit-learn~=0.23.2
-scikit-multilearn~=0.2.0
+torch
+numpy
+tqdm
+scikit-learn
+scikit-multilearn
