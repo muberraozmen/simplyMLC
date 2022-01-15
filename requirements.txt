@@ -1,5 +1,7 @@
-torch
-numpy
+python>=3.6
+torch>=1.9
+numpy>=1.19
 tqdm
 scikit-learn
 scikit-multilearn
+arff

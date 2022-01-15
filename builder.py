@@ -10,7 +10,7 @@ class Model(object):
     def __init__(self, num_features, num_labels, network='TransformerMLC', device='cpu', **kwargs):
         if network == "TransformerMLC":
             model = TransformerMLC(num_features=num_features, num_labels=num_labels, **kwargs)
-            self.model = model.to(device)
+        self.model = model.to(device)
         self.loss_fn = self.set_loss_fn(**kwargs)
         self.optimizer, self.scheduler = self.set_optimizer(**kwargs)
 
