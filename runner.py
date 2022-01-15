@@ -40,7 +40,9 @@ def run(train_data, test_data, model, opt):
             model.save_model(opt['results_dir']+opt['name']+'.model')
             best_epoch_score = epoch_score
 
-    logger.info("Final test results with best model")
+    logger.info("{t} - Training ended".format(t=time.strftime('%H:%M:%S')))
+
+    logger.info("Final test results with best model:")
     epoch_loss, targets, predictions = model.evaluate_epoch(test_data)
     performance, _, _ = compute_metrics(predictions, targets)
     log_performance(logger, performance)
