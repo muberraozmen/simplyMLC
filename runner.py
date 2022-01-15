@@ -20,7 +20,7 @@ def run(train_data, test_data, model, opt):
 
     logger.info("{t} - Training starts".format(t=time.strftime('%H:%M:%S')))
 
-    logger.info("{a}".format(a=model.device))
+    logger.info("{a}".format(a=model.model.device))
     i, x, y = next(iter(train_data))
     logger.info("{a}".format(a=x.device))
     logger.info("{a}".format(a=y.device))

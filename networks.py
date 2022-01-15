@@ -34,7 +34,7 @@ class TransformerMLC(nn.Module):
         print(input_mask.device)
         print(self.label_array.device)
         enc_output = self.encoder(enc_input, src_key_padding_mask=input_mask)
-        dec_input = self.label_emb(self.label_array.to(features.device)).repeat(features.size(0), 1, 1)
+        dec_input = self.label_emb(self.label_array).repeat(features.size(0), 1, 1)
         dec_output = self.decoder(dec_input, enc_output, memory_key_padding_mask=input_mask)
 
         seq_logit = self.label_prj(dec_output)
