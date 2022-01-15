@@ -50,8 +50,8 @@ def run(train_data, test_data, model, opt):
 
 
 def compute_metrics(predictions, targets, br_threshold=None):
-    targets = targets.detach().numpy()
-    predictions = predictions.detach().numpy()
+    targets = targets.detach().cpu().numpy()
+    predictions = predictions.detach().cpu().numpy()
 
     def _calculate(level, p=predictions.copy(), t=targets):
         p[p < level] = 0
