@@ -15,7 +15,7 @@ def main(opt):
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
-    parser.add_argument("--configuration", default="config.json")
+    parser.add_argument("--configuration", default="debug.json")
     args = parser.parse_args()
     with open(args.configuration, 'r') as json_file:
         json_data = json_file.read()
