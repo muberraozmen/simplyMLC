@@ -19,14 +19,16 @@ def run(train_data, test_data, model, opt):
     logger.info(model.model)
 
     logger.info("{t} - Training starts".format(t=time.strftime('%H:%M:%S')))
+
+    logger.info("{a}".format(a=model.device))
+    i, x, y = next(iter(train_data))
+    logger.info("{a}".format(a=x.device))
+    logger.info("{a}".format(a=y.device))
+
     train_loss = []
     test_loss = []
     best_epoch_score = 0
     for epoch in range(opt['num_epochs']):
-        logger.info(model.device)
-        i, x, y = next(iter(train_data))
-        logger.info(x.device)
-        logger.info(y.device)
         epoch_loss, targets, predictions = model.train_epoch(train_data)
         train_loss.append(epoch_loss)
         _, epoch_score, threshold = compute_metrics(predictions, targets)
