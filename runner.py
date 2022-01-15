@@ -25,8 +25,8 @@ def run(train_data, test_data, model, opt):
     for epoch in range(opt['num_epochs']):
         logger.info(model.device)
         i, x, y = next(iter(train_data))
-        print(x.device)
-        print(y.device)
+        logger.info(x.device)
+        logger.info(y.device)
         epoch_loss, targets, predictions = model.train_epoch(train_data)
         train_loss.append(epoch_loss)
         _, epoch_score, threshold = compute_metrics(predictions, targets)
