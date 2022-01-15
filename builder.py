@@ -81,7 +81,7 @@ class Model(object):
             fn = nn.BCEWithLogitsLoss()
         return fn
 
-    def set_optimizer(self, betas=(0.9, 0.98), lr=2e-4, step_size=10, gamma=0.1, last_epoch=-1, **kwargs):
+    def set_optimizer(self, betas=(0.9, 0.98), lr=1e-3, step_size=10, gamma=0.1, last_epoch=-1, **kwargs):
         optimizer = torch.optim.Adam(self.model.parameters(), betas=betas, lr=lr)
         scheduler = torch.torch.optim.lr_scheduler.StepLR(optimizer, step_size=step_size, gamma=gamma, last_epoch=last_epoch)
         return optimizer, scheduler
