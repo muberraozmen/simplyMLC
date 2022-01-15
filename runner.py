@@ -19,11 +19,6 @@ def run(train_data, test_data, model, opt):
     logger.info(model.model)
 
     logger.info("{t} - Training starts".format(t=time.strftime('%H:%M:%S')))
-
-    x, y = next(iter(train_data))
-    logger.info("{a}".format(a=x.device))
-    logger.info("{a}".format(a=y.device))
-
     train_loss = []
     test_loss = []
     best_epoch_score = 0
