@@ -40,6 +40,15 @@ def load(opt):
     if feature_names != feature_names_ or label_names != label_names_:
         assert ValueError
 
+    ''' DEBUGGING MODE '''
+    x_train = x_train[:100, :10]
+    y_train = y_train[:100, :5]
+    x_test = x_test[:100, :10]
+    y_test = y_test[:100, :5]
+    feature_names = feature_names[:10]
+    label_names = label_names[:5]
+    ''' DEBUGGING MODE '''
+
     vocab_src = dict()
     vocab_src[0] = '<pad>'
     for idx in range(len(feature_names)):

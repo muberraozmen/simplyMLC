@@ -18,29 +18,34 @@ def run(train_data, test_data, model, opt):
     logger.info("Here is your model for MLC:")
     logger.info(model.model)
 
-    logger.info("{t} - Training starts".format(t=time.strftime('%H:%M:%S')))
+    start_time = time.strftime('%H:%M:%S')
+    logger.info("{t} - Training starts".format(t=start_time))
     train_loss = []
     test_loss = []
     best_epoch_score = 0
     for epoch in range(opt['num_epochs']):
         epoch_loss, targets, predictions = model.train_epoch(train_data)
         train_loss.append(epoch_loss)
-        _, epoch_score, threshold = compute_metrics(predictions, targets)
         logger.info("Epoch {:} - average training loss = {:.6}".format(epoch, epoch_loss/len(predictions)))
 
         if epoch % opt['test_step'] == 0:
+            _, _, threshold = compute_metrics(predictions, targets)  # calculate br threshold from training predictions
+
             epoch_loss, targets, predictions = model.evaluate_epoch(test_data)
             test_loss.append(epoch_loss)
-            performance, _, _ = compute_metrics(predictions, targets, threshold)
             logger.info("Epoch {:} - average test loss = {:.6}".format(epoch, epoch_loss / len(predictions)))
-            logger.info("Calculated performance metrics on test data")
+
+            logger.info("Calculated performance metrics on test data:")
+            performance, epoch_score, _ = compute_metrics(predictions, targets, threshold)  # to use on testing
             log_performance(logger, performance)
 
-        if epoch_score > best_epoch_score:
-            model.save_model(opt['results_dir']+opt['name']+'.model')
-            best_epoch_score = epoch_score
+            if epoch_score > best_epoch_score:
+                model.save_model(opt['results_dir']+opt['name']+'.model')
+                best_epoch_score = epoch_score
 
-    logger.info("{t} - Training ended".format(t=time.strftime('%H:%M:%S')))
+    end_time = time.strftime('%H:%M:%S')
+    logger.info("{t} - Training ends".format(t=end_time))
+    logger.info("Total duration: {t}".format(t=end_time-start_time))
 
     logger.info("Final test results with best model:")
     epoch_loss, targets, predictions = model.evaluate_epoch(test_data)
